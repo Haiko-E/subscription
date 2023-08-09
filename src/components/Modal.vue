@@ -22,7 +22,7 @@ defineEmits<{
         class="absolute inset-0 flex items-center bg-white p-10 sm:static sm:w-[500px] sm:flex-col sm:rounded-xl"
       >
         <div class="grid auto-rows-min gap-14">
-          <img src="../assets/icon-success.svg" alt="success" />
+          <img src="../../public/icon-success.svg" alt="success" />
           <h1 class="text-5xl font-bold">Thanks for subscribing!</h1>
           <p>
             A confirmation email has been sent to

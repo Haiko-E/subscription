@@ -95,8 +95,8 @@ watch(email, () => {
         class="h-full w-full object-cover object-right sm:rounded-3xl"
         :src="
           isMobile
-            ? './src/assets/illustration-sign-up-desktop.svg'
-            : './src/assets/illustration-sign-up-mobile.svg'
+            ? './illustration-sign-up-desktop.svg'
+            : './illustration-sign-up-mobile.svg'
         "
         alt="Picture"
       />
