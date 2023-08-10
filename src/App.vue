@@ -25,8 +25,8 @@ function subscribe() {
   const result = Email.safeParse(email.value);
   if (!result.success) {
     emailErrorMessage.value = result.error.errors[0].message;
-    return;
   } else {
+    emailErrorMessage.value = "";
     email.value = result.data;
     showModal.value = true;
     console.log(result.data);
@@ -41,15 +41,17 @@ function dismiss() {
 
 // After first 'subscribe', watch email input on every keystroke
 watchEffect(() => {
+  console.log("ERROR" + emailErrorMessage.value);
+  console.log("EMAIL" + email.value);
+
   if (!emailErrorMessage.value) {
     return;
+  }
+  const result = Email.safeParse(email.value);
+  if (result.success) {
+    emailErrorMessage.value = "";
   } else {
-    const result = Email.safeParse(email.value);
-    if (!result.success) {
-      emailErrorMessage.value = result.error.errors[0].message;
-    } else {
-      emailErrorMessage.value = "";
-    }
+    emailErrorMessage.value = result.error.errors[0].message;
   }
 });
 </script>
@@ -74,7 +76,8 @@ watchEffect(() => {
           </p>
         </label>
         <input
-          v-model="email"
+          :value="email"
+          @input="(e) => (email = (e.target as HTMLInputElement).value)"
           :class="`block w-full rounded-md border p-4 ${
             emailErrorMessage
               ? 'border-project-100 bg-project-100 bg-opacity-20 text-project-100  focus-visible:outline-none '
