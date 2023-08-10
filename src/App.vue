@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { z } from "zod";
-import { ref, watch } from "vue";
+import { ref, watchEffect } from "vue";
 import { useMediaQuery } from "@vueuse/core";
 import ListItem from "./components/ListItem.vue";
 import Button from "./components/Button.vue";
@@ -40,7 +40,7 @@ function dismiss() {
 }
 
 // After first 'subscribe', watch email input on every keystroke
-watch(email, () => {
+watchEffect(() => {
   if (!emailErrorMessage.value) {
     return;
   } else {
